@@ -24,10 +24,103 @@ Login: POST /api/login/
 Request body:
 {
   "username": "user1",
-  "password": "pass1234"
+  "password": "pass123"
+  }
+## Configuration
+
+Add the following settings to your `settings.py` file:
+
+```python
+INSTALLED_APPS = [
+    ...
+    'rest_framework',
+    'rest_framework_simplejwt',
+    ...
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
 }
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': 'your_secret_key_here',
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
+
 Response:
 {
   "refresh": "your_refresh_token",
+}
+
+Django Banking Application with Deposit, Withdraw, and Exit Functionalities
+
+Add the following settings to your `settings.py` file:
+INSTALLED_APPS = [
+    ...
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'bank',  # Assuming your Django app is named 'bank'
+    ...
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': 'your_secret_key_here',
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
+
+ Django Banking Application with Login, Logout History, and Transaction History
+Add the following settings to your `settings.py` file:
+
+```python
+INSTALLED_APPS = [
+    ...
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'bank',  # Assuming your Django app is named 'bank'
+    ...
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': 'your_secret_key_here',
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
+This Django-based banking application is designed to provide secure user authentication and basic banking functionalities such as login/logout tracking and transaction history management. The application uses Django REST Framework (DRF) and Simple JWT for authentication, allowing users to interact with the system through RESTful APIs. 
+
+
   "access": "your_access_token"
 }
